@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Flurl.Http" Version="4.0.2" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+		<PackageReference Include="MassTransit.RabbitMQ" Version="8.5.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Insurance.Hiring.Domain\Insurance.Hiring.Domain.csproj" />
+		<ProjectReference Include="..\Insurance.Hiring.Infra\Insurance.Hiring.Infra.csproj" />
+		<ProjectReference Include="..\Insurance.Shared\Insurance.Shared.csproj" />
+	</ItemGroup>
+
+</Project>
