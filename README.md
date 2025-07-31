@@ -1,4 +1,4 @@
-# Sistema de Propost de Seguro
+# Sistema de Proposta de Seguro
 
 Um sistema de microserviços para gerenciamento de Propost de seguro e suas contratações, construído com .NET 8, PostgreSQL e arquitetura hexagonal.
 
