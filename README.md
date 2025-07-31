@@ -35,7 +35,7 @@ O sistema permite que usuários criem Proposta de seguro, consultem seu status e
 
 ## 🏗️ Arquitetura
 
-O projeto segue a **Arquitetura Hexagonal (Ports & Adapters)** com princípios de **Clean Architecture** e **Domain-Driven Design (DDD)**:
+O projeto segue a **Arquitetura Hexagonal (Ports & Adapters)** com princípios de **Clean Architecture**:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -103,10 +103,6 @@ O projeto segue a **Arquitetura Hexagonal (Ports & Adapters)** com princípios d
 - **Moq** - Mock framework
 - **Flurl.Http.Testing** - Testes de HTTP
 
-### DevOps
-- **Docker** - Containerização
-- **Docker Compose** - Orquestração de containers
-
 ## 📋 Pré-requisitos
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
@@ -116,29 +112,14 @@ O projeto segue a **Arquitetura Hexagonal (Ports & Adapters)** com princípios d
 
 ## 🚀 Instalação
 
-### 1. Clonar o Repositório
-```bash
-git clone https://github.com/seu-usuario/insurance-system.git
-cd insurance-system
-```
-
-### 2. Configurar Variáveis de Ambiente
+### 1. Configurar Variáveis de Ambiente
 ```bash
 # Copiar arquivos de configuração de exemplo
 cp src/Propostervice/Propost.API/appsettings.example.json src/Propostervice/Propost.API/appsettings.json
 cp src/ContractService/Contract.API/appsettings.example.json src/ContractService/Contract.API/appsettings.json
 ```
 
-### 3. Subir Infraestrutura
-```bash
-# Subir PostgreSQL e RabbitMQ
-docker-compose up -d postgres rabbitmq
-
-# Aguardar inicialização (cerca de 30 segundos)
-docker-compose logs postgres
-```
-
-### 4. Executar Migrations
+### 2. Executar Migrations
 ```bash
 # Propostervice
 dotnet ef database update -p src/Propostervice/Propost.Infrastructure -s src/Propostervice/Propost.API
@@ -152,7 +133,7 @@ dotnet ef database update -p src/ContractService/Contract.Infrastructure -s src/
 ### Opção 1: Local Development
 ```bash
 # Terminal 1 - Propostervice
-dotnet run --project src/ProposttService/Propost.API
+dotnet run --project src/PropostService/Propost.API
 
 # Terminal 2 - ContractService
 dotnet run --project src/ContractService/Contract.API
@@ -262,66 +243,9 @@ InsuranceSystem/
 
 ## 💡 Exemplos de Uso
 
-### 1. Criar uma Propost
-```bash
-curl -X POST http://localhost:5001/api/Propost \
-  -H "Content-Type: application/json" \
-  -d '{
-    "nomeCliente": "João Silva",
-    "email": "joao@email.com", 
-    "valorCobertura": 10000.00,
-    "tipoSeguro": "Vida"
-  }'
-```
-
-### 2. Listar Propost
+### 1. Listar Propost
 ```bash
 curl http://localhost:5001/api/Propost
-```
-
-### 3. Aprovar Propost
-```bash
-curl -X PUT http://localhost:5001/api/Propost/{id}/status \
-  -H "Content-Type: application/json" \
-  -d '{
-    "PropostId": "{id}",
-    "novoStatus": 2
-  }'
-```
-
-### 4. Contratar Propost
-```bash
-curl -X POST http://localhost:5002/api/contract \
-  -H "Content-Type: application/json" \
-  -d '{
-    "PropostId": "{id}"
-  }'
-```
-
-### Cenário Completo com HTTPie
-```bash
-# 1. Criar Propost
-http POST localhost:5001/api/Propost \
-  nomeCliente="Maria Silva" \
-  email="maria@email.com" \
-  valorCobertura:=15000 \
-  tipoSeguro="Auto"
-
-# 2. Aprovar Propost (substitua {id})
-http PUT localhost:5001/api/Propost/{id}/status \
-  PropostId="{id}" \
-  novoStatus:=2
-
-# 3. Contratar Propost
-http POST localhost:5002/api/contract \
-  PropostId="{id}"
-```
-
-#### 3. Problemas de Migration
-```bash
-# Resetar migrations
-dotnet ef database drop -p src/Propostervice/Propost.Infrastructure -s src/Propostervice/Propost.API
-dotnet ef database update -p src/Propostervice/Propost.Infrastructure -s src/Propostervice/Propost.API
 ```
 
 ## 🤝 Contribuição
