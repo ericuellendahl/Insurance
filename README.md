@@ -18,17 +18,17 @@ Um sistema de microserviços para gerenciamento de Propost de seguro e suas cont
 
 ## 🎯 Visão Geral
 
-O sistema permite que usuários criem Propost de seguro, consultem seu status e efetuem a contratação quando aprovadas. É dividido em dois microserviços principais:
+O sistema permite que usuários criem Proposta de seguro, consultem seu status e efetuem a contratação quando aprovadas. É dividido em dois microserviços principais:
 
 ### 🏢 Propostervice
-- ✅ Criar Propost de seguro
-- ✅ Listar Propost
-- ✅ Consultar Propost específica
-- ✅ Alterar status da Propost (Em Análise, Aprovada, Rejeitada)
+- ✅ Criar Proposta de seguro
+- ✅ Listar Proposta
+- ✅ Consultar Proposta específica
+- ✅ Alterar status da Proposta (Em Análise, Aprovada, Rejeitada)
 - ✅ Publicar eventos de mudança de status
 
 ### 🤝 ContractService
-- ✅ Contratar uma Propost (somente se aprovada)
+- ✅ Contratar uma Proposta (somente se aprovada)
 - ✅ Armazenar informações da contratação
 - ✅ Comunicar-se com Propostervice para verificar status
 - ✅ Consumir eventos de mudança de status
@@ -41,7 +41,7 @@ O projeto segue a **Arquitetura Hexagonal (Ports & Adapters)** com princípios d
 ┌─────────────────────────────────────────────────────────────┐
 │                    MICROSERVIÇOS                            │
 ├─────────────────────────┬───────────────────────────────────┤
-│      Propostervice     │        ContractService            │
+│       Propostervice     │        ContractService            │
 ├─────────────────────────┼───────────────────────────────────┤
 │ ┌─────────────────────┐ │ ┌─────────────────────────────────┐ │
 │ │        API          │ │ │              API                │ │
